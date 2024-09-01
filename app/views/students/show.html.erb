@@ -1,0 +1,48 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="col-md-4">
+    <p id="notice" class="alert alert-info"><%= notice %></p>
+
+    <p>
+      <strong>Note:</strong> Updating your profile has logged you out.
+    </p>
+
+    <p>
+      <strong>Email:</strong>
+      <%= @student.email %>
+    </p>
+
+    <p>
+      <strong>Name:</strong>
+      <%= @student.name %>
+    </p>
+
+    <p>
+      <strong>Phone:</strong>
+      <%= @student.phone %>
+    </p>
+
+    <p>
+      <strong>Education level:</strong>
+      <%= @student.education_level.name %>
+    </p>
+
+    <p>
+      <strong>University:</strong>
+      <%= @student.university.name %>
+    </p>
+
+    <p>
+      <strong>Max book allowed:</strong>
+      <span  class="badge bg-danger"><%= @student.max_book_allowed %></span>
+    </p>
+
+    <div class="d-grid gap-2">
+      <% if current_admin.nil? %>
+        <%= link_to 'Edit', edit_student_path(@student), class: 'btn btn-secondary' %> |
+        <%= link_to 'Back', new_student_session_path, class: 'btn btn-warning' %>
+      <% else %>
+        <%= link_to 'Back', show_students_admins_path, class: 'btn btn-warning' %>
+      <% end %>
+    </div>
+  </div>
+</div>

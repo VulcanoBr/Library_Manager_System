@@ -1,0 +1,35 @@
+<div class="col-md-6">
+    <%= form_with(model: admin, local: true) do |form| %>
+      <% if admin.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(admin.errors.count, "error") %> prohibited this admin from being saved:</h2>
+
+          <ul>
+            <% admin.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="mb-3">
+        <%= form.label :name, class: "form-label" %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :email, class: "form-label" %>
+        <%= form.text_field :email, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :password, class: "form-label" %>
+        <%= form.password_field :password, class: "form-control" %>
+      </div>
+
+      <div class="d-grid gap-2">
+        <%= form.submit "Save", class: "btn btn-primary" %>
+        <%= link_to 'Cancel', admins_path, class: 'btn btn-danger' %>
+      </div>
+    <% end %>
+</div>

@@ -1,0 +1,45 @@
+<div class="col-md-4">
+    <%= form_with(model: transaction, local: true) do |form| %>
+      <% if transaction.errors.any? %>
+        <div class="alert alert-danger">
+          <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+
+          <ul>
+            <% transaction.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="mb-3">
+        <%= form.label :isbn, class: "form-label" %>
+        <%= form.text_field :isbn, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :email, class: "form-label" %>
+        <%= form.text_field :email, class: "form-control" %>
+      </div>
+
+      <div class="form-check mb-3">
+        <%= form.check_box :checkout, class: "form-check-input" %>
+        <%= form.label :checkout, class: "form-check-label" %>
+      </div>
+
+      <div class="form-check mb-3">
+        <%= form.check_box :request, class: "form-check-input" %>
+        <%= form.label :request, class: "form-check-label" %>
+      </div>
+
+      <div class="form-check mb-3">
+        <%= form.check_box :bookmarks, class: "form-check-input" %>
+        <%= form.label :bookmarks, class: "form-check-label" %>
+      </div>
+
+      <div class="d-grid gap-2">
+        <%= form.submit "Create Transaction", class: "btn btn-primary" %>
+        <%= link_to "Cancel", transactions_path, class: "btn btn-danger" %>
+      </div>
+    <% end %>
+</div>

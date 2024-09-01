@@ -1,0 +1,20 @@
+
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h1 class="card-title">Edit Nationality</h1>
+        </div>
+        <div class="card-body">
+          <%= render "form", nationality: @nationality %>
+        </div>
+        <div class="mt-4">
+          <%= link_to "Show this nationality", @nationality, class: "btn btn-primary" %> |
+          <%= link_to "Back to nationalitie", nationalities_path, class: "btn btn-secondary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

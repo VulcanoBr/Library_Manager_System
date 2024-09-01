@@ -1,0 +1,45 @@
+<div class="container">
+  <h1 class="mt-3">List of Checked Out Books</h1>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Isbn</th>
+        <th>Title</th>
+        <th>Authors</th>
+        <th>Language</th>
+        <th>Published</th>
+        <th>Edition</th>
+        <th>Subject</th>
+        <th>Summary</th>
+        
+        <th>Special collection</th>
+        <th>Library</th>
+        <th>Count</th>
+        <th colspan="6"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <td><%= book.isbn %></td>
+          <td><%= book.title %></td>
+          <td><%= book.author.name %></td>
+          <td><%= book.language.name %></td>
+          <td><%= book.publisher.name %></td>
+          <td><%= book.edition %></td>
+          <td><%= book.subject.name %></td>
+          <td><%= book.summary %></td>
+          
+          <td><%= book.special_collection %></td>
+          <td><%= Library.find(book.library_id).name %></td>
+          <td>
+            <span class="badge <%= book.count > 0 ? 'bg-success' : 'bg-danger' %>">
+              <%= book.count %>
+            </span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

@@ -1,0 +1,10 @@
+
+  <%= render 'layouts/shared/viewBookHistory'%>
+
+  <div>
+    <%= link_to librarian_book_view_librarians_path(current_librarian.library_id), text: "Back", class: "btn btn-warning" do %>
+        <i class="fas fa-arrow-left" ></i> 
+        <span>Back </span>
+    <% end %>
+  </div>
+</div>

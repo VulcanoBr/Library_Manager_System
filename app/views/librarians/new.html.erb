@@ -1,0 +1,13 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="col-md-4">
+    <h1 class="mb-4">New Librarian</h1>
+
+    <%= render 'form', librarian: @librarian %>
+
+    <div class="d-grid gap-2">
+      <% if current_librarian.present? %>
+        <%= link_to 'Back', librarians_path, class: 'btn btn-secondary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="col-md-4">
+    <h1 class="mb-4">New Library</h1>
+
+    <%= render 'form', library: @library %>
+
+    <% if current_admin.nil? %>
+      <%= link_to 'Back', libraries_path, class: 'btn btn-secondary' %>
+    <% end %>
+  </div>
+</div>

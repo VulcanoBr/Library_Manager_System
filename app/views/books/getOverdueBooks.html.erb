@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="col-md-10">
+    <h1 class="mt-3">Overdue Books and Fine</h1>
+
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Edition</th>
+          <th>Subject</th>
+          <th>Fine</th>
+          <th colspan="5"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <% if @fines.present? %>
+        <% @fines.each do |fine| %>
+          <% if fine[:fine_ammount] > 0 %>
+            <tr>
+              <td><%= Student.find(fine[:student_id]).name %></td>
+              <td><%= Book.find(fine[:book_id]).title %></td>
+              <td><%= Book.find(fine[:book_id]).author.name %></td>
+              <td><%= Book.find(fine[:book_id]).edition %></td>
+              <td><%= Book.find(fine[:book_id]).subject.name %></td>
+              <td><%= number_to_currency(fine[:fine_ammount], unit: "R$ ", separator: ",", delimiter: ".") %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <div class="">
+      <% panel_path = current_librarian ? librarians_path : (current_admin ? admins_path : students_path) %>
+      <%= link_to panel_path, text: "Back", class: "btn btn-warning" do %>
+        <i class="fas fa-arrow-left"></i>
+        <span>Back Panel</span>
+      <% end %>
+
+    </div>
+  </div>
+</div>

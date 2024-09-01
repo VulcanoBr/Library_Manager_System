@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <%= image_tag 'logolibrary.webp', alt: 'Logo', width: "65", height: "55", class: "me-5 custom-margin" %>
+    <h1>Student Panel</h1>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item ident ms-4">
+          <i class="fas fa-user me-1 fs-4"></i> <!-- Ícone de avatar 2x -->
+            <%= current_student.name %>
+        </li>
+        <li class="nav-item ident ms-4">
+          <i class="fas fa-envelope me-1 fs-4"></i> <!-- Ícone de envelope 2x -->
+             <%= current_student.email %>
+        </li>
+      </ul>
+      <div class="navbar-nav ms-auto">
+        <div class="linklogoutback">
+          <% if student_signed_in? %>
+            <%= button_to "Logout", destroy_student_session_path, method: :delete, class: 'btn btn-danger' %>
+          <% end %>
+          <% if librarian_signed_in? %>
+            <%= button_to "Logout", destroy_librarian_session_path, method: :delete, class: 'btn btn-danger' %>
+          <% end %>
+          <% if admin_signed_in? %>
+            <%= button_to 'Logout', destroy_admin_session_path, method: :delete, class: 'btn btn-danger' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <div class="row row-cols-1 row-cols-md-2">
+    <div class="col mb-4">
+      <section class="card">
+        <div class="card-body">
+          <h5 class="card-title">Student Rights</h5>
+          <%= link_to 'Edit profile', edit_student_path(current_student), class: 'btn btn-primary mt-2' %>
+        </div>
+      </section>
+    </div>
+    <div class="col mb-4">
+      <section class="card">
+        <div class="card-body">
+          <h5 class="card-title">Books</h5>
+          <%= link_to 'View Books', books_students_students_path, class: 'btn btn-primary mt-2' %>
+        </div>
+      </section>
+    </div>
+    <div class="col mb-4">
+      <section class="card">
+        <div class="card-body">
+          <h5 class="card-title">Libraries</h5>
+          <%= link_to 'View Libraries', student_libraries_index_students_path, class: 'btn btn-primary mt-2' %>
+        </div>
+      </section>
+    </div>
+    <div class="col mb-4">
+      <section class="card">
+        <div class="card-body">
+          <h5 class="card-title">Your Data</h5>
+          <%= link_to 'Your Activity (Checkouts/Bookmarks/Hold Requests)', getBookmarkBooks_students_path(student_id: current_student.id), class: 'btn btn-primary mt-2' %>
+          <%= link_to 'Books Fines', getStudentBookFine_students_path(student_id: current_student.id), class: 'btn btn-primary mt-2' %>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

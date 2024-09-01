@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LibraryManagementSystem</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+  <body class="bga">
+    <!-- <div class="linklogoutback">
+    <% if student_signed_in?%>
+      <%= link_to "Logout", destroy_student_session_path, method: :delete%>
+      <%= link_to 'Back', students_path %>
+    <%end%>
+    <% if librarian_signed_in?%>
+      <%= link_to "Logout", destroy_librarian_session_path, method: :delete%>
+      <%= link_to 'Back', librarians_path %>
+    <%end%>
+    <% if admin_signed_in?%>
+      <%= button_to 'Logout', destroy_admin_session_path, method: :delete %>
+      <%= link_to 'Back', admins_path, class: 'btn' %>
+    <%end%>
+    </div>  -->
+
+    
+
+    <%= yield %>
+  
+
+  </body>
+</html>

@@ -1,0 +1,43 @@
+
+
+<div id="<%= dom_id @university %>">
+  <div class="container text-center">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <p>
+              <strong>Name:</strong>
+              <%= @university.name %>
+            </p>
+            
+            <p>
+              <strong>Email:</strong>
+              <%= @university.email %>
+            </p>
+            <p>
+              <strong>Home Page:</strong>
+              <%= @university.homepage %>
+            </p>
+            <p>
+              <strong>Address:</strong>
+              <% if @address.length > 0 %>
+                <%= link_to 'Address', university_address_path(@university.id, id: @university.id) %> 
+              <% else %>
+                Endereço não cadastrado
+              <% end %> 
+            </p>
+            <p>
+              <strong>Phone:</strong>
+              <% if @telephones.length > 0 %>
+                <%= link_to 'Phone', university_telephone_path(@university.id, id: @university.id) %>
+              <% else %>
+                Telefone(s) não cadastrado(s)
+              <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

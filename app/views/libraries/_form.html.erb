@@ -1,0 +1,52 @@
+
+
+    <%= form_with(model: library, local: true, data: {turbo: false}) do |form| %>
+      <% if library.errors.any? %>
+        <div class="alert alert-danger">
+          <h2><%= pluralize(library.errors.count, "error") %> prohibited this library from being saved:</h2>
+
+          <ul>
+            <% library.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="mb-3">
+        <%= form.label :name, class: "form-label" %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :email, class: "form-label" %>
+        <%= form.text_field :email, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :university, class: "form-label" %>
+        <%= form.select(:university_id, University.ordered_by_name.collect { |l| [l.name, l.id] }, 
+            { include_blank: "Select a University" }, { class: "form-select" }) %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :location, class: "form-label" %>
+        <%= form.text_field :location, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :borrow_limit, class: "form-label" %>
+        <%= form.number_field :borrow_limit, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :overdue_fines, class: "form-label" %>
+        <%= form.text_field :overdue_fines, class: "form-control" %>
+      </div>
+
+      <div class="d-grid gap-2">
+        <%= form.submit "Save", class: "btn btn-primary" %>
+        <%= link_to 'Cancel', libraries_path, class: 'btn btn-danger' %>
+      </div>
+    <% end %>
+  

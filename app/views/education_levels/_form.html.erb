@@ -1,0 +1,28 @@
+
+  <%= form_with(model: education_level, local: true, data: {turbo: false}) do |form| %>
+    <% if education_level.errors.any? %>
+      <div class="alert alert-danger">
+        <h2><%= pluralize(education_level.errors.count, "error") %> prohibited this education_level from being saved:</h2>
+
+        <ul>
+          <% education_level.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-3 col-6">
+        <%= form.label :name, class: "form-label" %>
+        <%= form.text_field :name, class: "form-control", required: true %>
+        <div class="invalid-feedback">Please provide a name.</div>
+    </div>
+
+
+    <div class="mb-3">
+        <%= form.submit "Save", class: "btn btn-primary" %>
+        <%= link_to "Cancel", education_levels_path, class: "btn btn-danger" %>
+      </div>
+  <% end %>
+
+

@@ -1,0 +1,52 @@
+<!-- app/views/errors/404.html.erb -->
+<header class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="">
+        <div class="row align-items-center">
+          <div class="row align-items-center">
+            <div class="col text-center mx-auto">
+              <h1 style="margin-left: 30px;">Welcome to Library</h1>
+            </div>
+        </div>
+      </div>
+    </nav>
+</header>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+      <div class="dialog">
+        <div>
+          <h1 class="title bg-primary text-white">Error - 404</h1>
+          <p>An error has occurred, to continue:</p>
+          <p>* Return to our homepage.<br />
+          * Send us an e-mail about this error and try later.</p>
+        </div> 
+          <% if admin_signed_in? %>
+            <%= link_to admins_path, text: "Back", class: "btn btn-warning" do %>
+                <i class="fas fa-arrow-left" ></i> 
+                <span>Back Admin</span>
+            <% end %>
+          <% else %>
+            <% if librarian_signed_in? %>
+              <%= link_to librarians_path, text: "Back", class: "btn btn-warning" do %>
+                <i class="fas fa-arrow-left" ></i> 
+                <span>Back Librarian</span>
+              <% end %>
+            <% else %>
+              <% if student_signed_in? %>
+                <%= link_to students_path, text: "Back", class: "btn btn-warning" do %>
+                    <i class="fas fa-arrow-left" ></i> 
+                    <span>Back Student</span>
+                <% end %>
+              <% else %>
+                <%= link_to root_path, text: "Back", class: "btn btn-secondary" do %>
+                    <i class="fas fa-arrow-left" ></i> 
+                    <span>Back Home</span>
+                <% end %>
+              <% end%>
+            <% end %>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>

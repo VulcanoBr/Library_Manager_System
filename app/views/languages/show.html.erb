@@ -1,0 +1,13 @@
+
+
+<div class="container text-center">
+  <p style="color: green"><%= notice %></p>
+
+  <%= render @language %>
+
+  <div>
+    <%= link_to "Edit this language", edit_language_path(@language), class: "btn btn-primary" %> |
+    <%= link_to "Back to languages", languages_path, class: "btn btn-secondary" %>
+
+  </div>
+</div>

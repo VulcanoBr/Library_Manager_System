@@ -1,0 +1,20 @@
+
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h1 class="card-title">Edit Language</h1>
+        </div>
+        <div class="card-body">
+          <%= render "form", language: @language %>
+        </div>
+        <div class="mt-4">
+          <%= link_to "Show this language", @language, class: "btn btn-primary" %> |
+          <%= link_to "Back to languages", languages_path, class: "btn btn-secondary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+
+    <%= form_with(model: language, local: true, data: {turbo: false}) do |form| %>
+      <div class="mb-3">
+        <% if language.errors.any? %>
+          <div class="alert alert-danger">
+            <h2><%= pluralize(language.errors.count, "error") %> prohibited this language from being saved:</h2>
+
+            <ul>
+              <% language.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="mb-3 col-6">
+        <%= form.label :name, class: "form-label" %>
+        <%= form.text_field :name, class: "form-control", required: true %>
+        <div class="invalid-feedback">Please provide a name.</div>
+      </div>
+
+      <div class="mb-3">
+        <%= form.submit "Save", class: "btn btn-primary" %>
+        <%= link_to "Cancel", languages_path, class: "btn btn-danger" %>
+      </div>
+    <% end %>

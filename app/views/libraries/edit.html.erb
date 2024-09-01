@@ -1,0 +1,19 @@
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="col-md-4">
+    <h1 class="mb-4">Editing Library</h1>
+
+    <%= render 'form', library: @library %>
+
+    <div class="d-grid mt-4">
+      <% if current_admin.present? %>
+        <%= link_to 'Back', show_libraries_admins_path, class: 'btn btn-secondary' %>	
+      <% elsif !current_librarian.nil? %>
+        <%= link_to 'Back', librarians_path, class: 'btn btn-secondary' %>
+      <% else %>
+        <%= link_to 'Show', @library, class: 'btn btn-primary' %> |
+        <%= link_to 'Back', libraries_path, class: 'btn btn-secondary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

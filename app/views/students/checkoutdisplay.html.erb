@@ -1,0 +1,36 @@
+<div class="container">
+  <h1 class="mt-3">Your Checked Out Books</h1>
+
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th>Checked Out Books</th>
+    </tr>
+    <% @checkout.each do |data| %>
+      <tr>
+        <td><%= data.isbn.strftime("%d/%m/%Y") %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th>Bookmarked Books</th>
+    </tr>
+    <% @request.each do |data| %>
+      <tr>
+        <td><%= data.isbn.strftime("%d/%m/%Y") %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th>Requested Books</th>
+    </tr>
+    <% @bookmark.each do |data| %>
+      <tr>
+        <td><%= data.isbn.strftime("%d/%m/%Y") %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

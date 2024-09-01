@@ -1,0 +1,73 @@
+
+<div class="container">
+  <div class="row justify-content-center">
+    <p class="text-success"><%= notice %></p>
+    <div class="d-flex justify-content-between">
+      <h1>University</h1>
+      <div>
+        <%= link_to "New University", new_university_path, class: "btn btn-success mt-3" %>
+      </div>
+    </div>
+      <div id="universities">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Homepage</th>
+              <th>Contact(s)</th>
+              <th>Address</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @universities.each do |university| %>
+              <tr>
+                <td><%= university.name %></td>
+                <td><%= university.email %></td>
+                <td><%= university.homepage %></td>
+                <td>
+                  <% if university.has_telephones == "S" %>
+                    <%= link_to 'Contacts', university_telephone_path(university.id, id: university.id), class: 'btn btn-primary' %>
+                  <% else %>
+                    Sem Telefone
+                  <% end %>
+                </td>
+                
+                <td>
+                  <% if university.has_address == "S" %>
+                    <%= link_to 'Address',  university_address_path(university.id, id:university.id), class: 'btn btn-primary' %>
+                  <% else %>
+                    Sem Endereço
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to university, class: 'btn btn-info' do %>
+                    <i class="fas fa-eye"></i>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to edit_university_path(university), class: 'btn btn-warning' do %>
+                    <i class="fas fa-edit"></i>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to  university, class: "btn btn-danger", method: :delete, data: { "turbo-method": :delete, 
+                      turbo_confirm: "Tem certesa que deseja excluir este item ?"} do %>
+                      <i class="fas fa-trash" ></i> 
+                  <% end %> 
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <%= link_to admins_path, text: "Back", class: "btn btn-warning" do %>
+        <i class="fas fa-arrow-left" ></i> 
+        <span>Back Panel</span>
+      <% end %>
+    </div>
+  </div>
+</div>

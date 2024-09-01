@@ -1,0 +1,30 @@
+<div class="container">
+  <h1 class="mt-3">Book Hold Request</h1>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Title</th>
+        <th colspan="4"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% if !@holdreqs.nil? %>
+        <% @holdreqs.each do |holdreq| %>
+          <tr>
+            <td><%= Student.find(holdreq.student_id).name %></td>
+            <td><%= Book.find(holdreq.book_id).title %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    <%= link_to (current_admin.present? ? admins_path : librarians_path), class: "btn btn-warning" do %>
+      <i class="fas fa-arrow-left" ></i> 
+      <span>Back Panel</span>
+    <% end %>
+  </div>
+</div>

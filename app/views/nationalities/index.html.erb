@@ -1,0 +1,45 @@
+
+
+<div class="container">
+  <p class="text-success"><%= notice %></p>
+  <div class="d-flex justify-content-between">
+    <h1>Nationalities</h1>
+    <div>
+      <%= link_to "New Nationalities", new_nationality_path, class: "btn btn-success mt-3" %>
+    </div>
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @nationalities.each do |nationality| %>
+        <tr>
+          <td><%= nationality.name %></td>
+            <td>
+              <%= link_to nationality, class: 'btn btn-info' do %>
+                    <i class="fas fa-eye"></i>
+                <% end %>
+                <%= link_to edit_nationality_path(nationality), class: 'btn btn-warning' do %>
+                    <i class="fas fa-edit"></i>
+                <% end %>
+                <%= link_to  nationality, class: "btn btn-danger", method: :delete, data: { "turbo-method": :delete, 
+                        turbo_confirm: "Tem certesa que deseja excluir este item ?"} do %>
+                      <i class="fas fa-trash" ></i> 
+                <% end %>
+            </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+    <div>
+      <%= link_to admins_path, text: "Back", class: "btn btn-warning" do %>
+        <i class="fas fa-arrow-left" ></i> 
+        <span>Back Panel</span>
+      <% end %>
+    </div>
+</div>

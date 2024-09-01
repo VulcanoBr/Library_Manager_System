@@ -1,0 +1,37 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="col-md-4">
+    <p id="notice" class="alert alert-info"><%= notice %></p>
+
+    <h1>Librarian Panel</h1>
+    Name: <%= current_librarian.name %><br>
+    Email: <%= current_librarian.email %><br>
+    <br>
+    <br>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th><strong>Librarian Rights</strong></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <%= button_to "Logout", destroy_librarian_session_path, method: :delete, class: 'btn btn-danger' %>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Your profile has not been approved yet. Please ask the Administrator to approve it.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

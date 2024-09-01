@@ -1,0 +1,89 @@
+<div class="col-md-10">
+    <%= form_with(model: book, local: true, html: { multipart: true }, data: {turbo: false}) do |form| %>
+      <% if book.errors.any? %>
+        <div class="alert alert-danger">
+          <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+          <ul>
+            <% book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="mb-3">
+        <%= form.label :isbn, class: "form-label" %>
+        <%= form.text_field :isbn, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :title, class: "form-label" %>
+        <%= form.text_field :title, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :subject, class: "form-label" %>
+        <%= form.select(:subject_id, Subject.all.collect { |l| [l.name, l.id] }, 
+            { include_blank: "Select a Subject" }, { class: "form-select" }) %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :authors, class: "form-label" %>
+        <%= form.select(:author_id, Author.all.collect { |l| [l.name, l.id] }, 
+            { include_blank: "Select a Author" }, { class: "form-select" }) %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :language, class: "form-label" %>
+        <%= form.select(:language_id, Language.all.collect { |l| [l.name, l.id] }, 
+            { include_blank: "Select a Language" }, { class: "form-select" }) %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :published, class: "form-label" %>
+        <%= form.select(:publisher_id, Publisher.all.collect { |l| [l.name, l.id] }, 
+            { include_blank: "Select a Publisher" }, { class: "form-select" }) %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :edition, class: "form-label" %>
+        <%= form.text_field :edition, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :summary, class: "form-label" %>
+        <%= form.text_area :summary, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :publication_date, class: "form-label" %>
+        <%= form.date_field :publication_date, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :special_collection, class: "form-check-label" %>
+        <%= form.check_box :special_collection, class: "form-check-input" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :library, class: "form-label" %>
+        <%= form.select(:library_id, Library.ordered_by_name.collect { |l| [l.name, l.id] }, 
+            { include_blank: "Select a Library" }, { class: "form-select" }) %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :count, class: "form-label" %>
+        <%= form.number_field :count, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :cover, class: "form-label" %>
+        <%= form.file_field :cover, class: "form-control" %>
+      </div>
+
+      <div class="d-grid gap-2">
+        <%= form.submit "Save", class: "btn btn-primary" %>
+        <%= link_to 'Cancel', (current_admin ? admins_path : librarians_path), class: 'btn btn-danger' %>
+    <% end %>
+</div>

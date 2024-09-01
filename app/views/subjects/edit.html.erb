@@ -1,0 +1,19 @@
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h1 class="card-title">Edit Subject</h1>
+        </div>
+        <div class="card-body">
+          <%= render "form", subject: @subject %>
+        </div>
+        <div class="mt-4">
+          <%= link_to "Show this subject", @subject, class: "btn btn-primary" %> |
+          <%= link_to "Back to subjects", subjects_path, class: "btn btn-secondary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

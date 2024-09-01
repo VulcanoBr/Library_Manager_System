@@ -1,0 +1,9 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="col-md-4">
+    <h1 class="mb-4">New Transaction</h1>
+
+    <%= render 'form', transaction: @transaction %>
+
+    <%= link_to 'Back', transactions_path, class: 'btn btn-secondary' %>
+  </div>
+</div>

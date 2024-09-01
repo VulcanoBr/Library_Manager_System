@@ -1,0 +1,13 @@
+
+
+<div class="container text-center">
+  <p style="color: green"><%= notice %></p>
+
+  <%= render 'university', university: @university, address: @address, telephones: @telephones  %>
+
+  <div>
+    <%= link_to "Edit this University", edit_university_path(id: @university.id), class: "btn btn-primary" %> |
+    <%= link_to "Back to Universities", universities_path, class: "btn btn-secondary" %>
+
+  </div>
+</div>

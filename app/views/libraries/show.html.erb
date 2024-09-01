@@ -1,0 +1,45 @@
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="col-md-4">
+    <p id="notice" class="text-success"><%= notice %></p>
+
+    <p>
+      <strong>Name:</strong>
+      <%= @library.name %>
+    </p>
+
+    <p>
+      <strong>Email:</strong>
+      <%= @library.email %>
+    </p>
+
+    <p>
+      <strong>University:</strong>
+      <%= @library.university.name %>
+    </p>
+
+    <p>
+      <strong>Location:</strong>
+      <%= @library.location %>
+    </p>
+
+    <p>
+      <strong>Borrow limit:</strong>
+      <%= @library.borrow_limit %>
+    </p>
+
+    <p>
+      <strong>Overdue fines:</strong>
+      <%= number_to_currency(@library.overdue_fines, unit: "R$ ", separator: ",", delimiter: ".") %>
+    </p>
+
+    <div class="d-grid gap-2">
+      <% if current_admin.nil? %>
+        <%= link_to 'Edit', edit_library_path(@library), class: 'btn btn-primary' %> |
+        <%= link_to 'Back', libraries_path, class: 'btn btn-secondary' %>
+      <% else %>
+        <%= link_to 'Back', show_libraries_admins_path, class: 'btn btn-secondary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

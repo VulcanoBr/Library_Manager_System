@@ -1,0 +1,46 @@
+
+<%= form_with(model: author, local: true, data: {turbo: false}) do |form| %>
+      <div class="mb-3">
+        <% if author.errors.any? %>
+          <div class="alert alert-danger">
+            <h2><%= pluralize(author.errors.count, "error") %> prohibited this author from being saved:</h2>
+
+            <ul>
+              <% author.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="mb-3 col-6">
+        <%= form.label :name, class: "form-label" %>
+        <%= form.text_field :name, class: "form-control", required: true %>
+        <div class="invalid-feedback">Please provide a name.</div>
+      </div>
+
+      <div class="mb-3 col-6">
+        <%= form.label :email, class: "form-label" %>
+        <%= form.text_field :email, class: "form-control", required: true %>
+        <div class="invalid-feedback">Please provide a email.</div>
+      </div>
+
+      <div class="mb-3 col-6">
+        <%= form.label :website, class: "form-label" %>
+        <%= form.text_field :website, class: "form-control", required: true %>
+        <div class="invalid-feedback">Please provide a website.</div>
+      </div>
+
+      <div class="mb-3 col-6">
+        <%= form.label :nationality, class: "form-label" %>
+        <%= form.select(:nationality_id, Nationality.all.collect { |l| [l.name, l.id] }, 
+            { include_blank: "Select a Nationality" }, { class: "form-select" }) %>
+        <div class="invalid-feedback">Please provide a nationalitye.</div>
+      </div>
+
+      <div class="mb-3">
+        <%= form.submit "Save", class: "btn btn-primary" %>
+        <%= link_to "Cancel", authors_path, class: "btn btn-danger" %>
+      </div>
+<% end %>

@@ -1,0 +1,87 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="col-md-6">
+    <p id="notice" class="text-success"><%= notice %></p>
+
+    <p>
+      <strong>Cover:</strong>
+      <%= @book.cover? ? image_tag(@book.cover.url, size: "100x75") : image_tag('semfoto.png', size: "60x35") %>
+    </p>
+
+    <p>
+      <strong>Isbn:</strong>
+      <%= @book.isbn %>
+    </p>
+
+    <p>
+      <strong>Title:</strong>
+      <%= @book.title %>
+    </p>
+
+    <p>
+      <strong>Authors:</strong>
+      <%= @book.author.name %>
+    </p>
+
+    <p>
+      <strong>Language:</strong>
+      <%= @book.language.name %>
+    </p>
+
+    <p>
+      <strong>Published:</strong>
+      <%= @book.publisher.name %>
+    </p>
+
+    <p>
+      <strong>Publication Date: </strong>
+      <%= @book.publication_date.try(:strftime, "%d/%m/%Y") %>
+    </p>
+
+    <p>
+      <strong>Edition:</strong>
+      <%= @book.edition %>
+    </p>
+
+    <p>
+      <strong>Subject:</strong>
+      <%= @book.subject.name %>
+    </p>
+
+    <p>
+      <strong>Summary:</strong>
+      <%= @book.summary %>
+    </p>
+
+    <p>
+      <strong>Special collection:</strong>
+      <%= @book.special_collection ? 'Yes' : 'No' %>
+    </p>
+
+    <p>
+      <strong>Library:</strong>
+      <%= @book.library.name %>
+    </p>
+
+    <p>
+      <strong>Available Count:</strong>
+        <span class="badge <%= @book.count > 0 ? 'bg-success' : 'bg-danger' %>">
+          <%= @book.count %>
+        </span>
+    </p>
+
+    <div class="d-grid gap-2">
+      <% if current_admin.nil? and current_librarian.nil? and current_student.nil? %>          
+        <%= link_to 'Back', books_path, class: 'btn btn-secondary' %>
+      <% end %>
+      <% if current_admin.present? %>
+        <%= link_to 'Edit', edit_book_path, class: 'btn btn-primary' %>
+        <%= link_to 'Back', show_books_admins_path, class: 'btn btn-secondary' %>
+      <% elsif current_librarian.present? %>
+        <%= link_to 'Edit', edit_book_path, class: 'btn btn-primary' %>
+        <%= link_to 'Back', librarian_book_view_librarians_path(library_id: @book.library_id), class: 'btn btn-secondary' %>
+      <% elsif current_student.present? %>
+        <%= link_to 'Back', books_students_students_path, class: 'btn btn-secondary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

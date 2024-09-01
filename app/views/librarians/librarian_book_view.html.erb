@@ -1,0 +1,85 @@
+<div class="container">
+  <h3 class="mt-4"><u>Books from library  <%= current_librarian.library.name %></u></h3>
+  <p><strong>Note:</strong> You can edit only books from your library.</p>
+
+  <%= form_tag(search_book_librarians_path, method: "get", required: true) do %>
+    <%= hidden_field_tag 'library_id', current_librarian.library_id %>
+    <div class="mb-3">
+      <%= radio_button_tag(:search_by, "title", true) %>Title 
+      <%= radio_button_tag(:search_by, "author", params[:search_by]) %>Author 
+      <%= radio_button_tag(:search_by, "publisher", params[:search_by]) %>Publisher 
+      <%= radio_button_tag(:search_by, "subject", params[:search_by]) %>Subject 
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-6">
+        <%= search_field_tag :search, params[:search], class: "form-control", placeholder: "Search", required: true %>
+      </div>
+      <div class="col-6">
+        <%= button_tag t('Search'), class: 'btn btn-primary' %>
+      </div>
+    </div>
+    
+  <% end %>
+
+  
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Isbn</th>
+        <th>Title</th>
+        <th>Author</th>
+        
+        
+        
+        <th>Subject</th>
+        <th>Special collection</th>
+        <th>Count</th>
+        <th>View </th>
+        <th collapse="3">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <td><%= book.isbn %></td>
+          <td><%= book.title %></td>
+          <td><%= book.author.name %></td>
+          
+          
+          
+          <td><%= book.subject.name %></td>
+          
+          <td><%= book.special_collection %></td>
+          
+          <td>
+            <span class="badge <%= book.count > 0 ? 'bg-success' : 'bg-danger' %>">
+              <%= book.count %>
+            </span>
+          </td>
+          <td><%= link_to 'Book History', viewBookHistory_librarians_path(id: book.id) %></td>
+          <td>
+              <%= link_to book, class: 'btn btn-info' do %>
+                    <i class="fas fa-eye"></i>
+              <% end %> 
+              <%= link_to edit_book_path(book), class: 'btn btn-warning' do %>
+                    <i class="fas fa-edit"></i>
+              <% end %> 
+              <%= link_to  book, class: "btn btn-danger", method: :delete, data: { "turbo-method": :delete, 
+                        turbo_confirm: "Tem certesa que deseja excluir este item ?"} do %>
+                      <i class="fas fa-trash" ></i> 
+              <% end %>
+          </td>
+          
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div>
+    <%= link_to librarians_path, text: "Back", class: "btn btn-warning" do %>
+        <i class="fas fa-arrow-left" ></i> 
+        <span>Back Panel</span>
+    <% end %>
+  </div>

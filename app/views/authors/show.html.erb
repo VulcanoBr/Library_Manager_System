@@ -1,0 +1,13 @@
+
+
+<div class="container text-center">
+  <p style="color: green"><%= notice %></p>
+
+  <%= render @author %>
+
+  <div>
+    <%= link_to "Edit this author", edit_author_path(@author), class: "btn btn-primary" %> |
+    <%= link_to "Back to authors", authors_path, class: "btn btn-secondary" %>
+
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="col-md-10"> 
+    <%= form_with(model: librarian, local: true) do |form| %>
+      <% if librarian.errors.any? %>
+        <div class="alert alert-danger">
+          <h2><%= pluralize(librarian.errors.count, "error") %> prohibited this librarian from being saved:</h2>
+
+          <ul>
+            <% librarian.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="mb-3">
+        <%= form.label :name, class: "form-label" %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :email, class: "form-label" %>
+        <%= form.text_field :email, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :library, class: "form-label" %>
+        <%= form.select(:library_id, Library.ordered_by_name.collect { |l| [l.name, l.id] }, 
+            { include_blank: "Select a Library" }, { class: "form-select" }) %>
+      </div>
+
+      <% if current_librarian.nil? %>
+        <div class="mb-3">
+          <%= form.label :approved, class: "form-label" %>
+          <%= form.select :approved, ['Yes', 'No'], {}, class: "form-select" %>
+        </div>
+      <% end %>
+
+      <div class="mb-3">
+        <%= form.label :password, class: "form-label" %>
+        <%= form.password_field :password, class: "form-control" %>
+      </div>
+
+      <div class="d-grid gap-2">
+        <%= form.submit "Save", class: "btn btn-primary" %>
+        <%= link_to 'Cancel', (current_admin ? admins_path : librarians_path), class: 'btn btn-danger' %>
+      </div>
+    <% end %>
+</div>

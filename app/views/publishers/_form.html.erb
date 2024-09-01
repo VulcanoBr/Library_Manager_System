@@ -1,0 +1,41 @@
+
+
+<%= form_with(model: publisher, local: true, data: {turbo: false}) do |form| %>
+      <div class="mb-3">
+        <% if publisher.errors.any? %>
+          <div class="alert alert-danger">
+            <h2><%= pluralize(publisher.errors.count, "error") %> prohibited this publisher from being saved:</h2>
+
+            <ul>
+              <% publisher.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="mb-3 col-6">
+        <%= form.label :name, class: "form-label" %>
+        <%= form.text_field :name, class: "form-control", required: true %>
+        <div class="invalid-feedback">Please provide a name.</div>
+      </div>
+
+      <div class="mb-3 col-6">
+        <%= form.label :email, class: "form-label" %>
+        <%= form.text_field :email, class: "form-control", required: true %>
+        <div class="invalid-feedback">Please provide a email.</div>
+      </div>
+
+      <div class="mb-3 col-6">
+        <%= form.label :website, class: "form-label" %>
+        <%= form.text_field :website, class: "form-control", required: true %>
+        <div class="invalid-feedback">Please provide a website.</div>
+      </div>
+
+      <div class="mb-3">
+        <%= form.submit "Save", class: "btn btn-primary" %>
+        <%= link_to "Cancel", publishers_path, class: "btn btn-danger" %>
+      </div>
+<% end %>
+

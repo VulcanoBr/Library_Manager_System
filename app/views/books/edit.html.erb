@@ -1,0 +1,14 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="col-md-4">
+    <h1 class="mb-4">Editing Book</h1>
+
+    <%= render 'form', book: @book %>
+
+    <div class="d-grid gap-2">
+      <% if current_admin.nil? && current_librarian.nil? %>  
+        <%= link_to 'Show', @book, class: 'btn btn-primary' %> |
+        <%= link_to 'Back', books_path, class: 'btn btn-secondary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+
+      <%= form_with(model: subject, local: true, html: { class: "mt-4" }, data: {turbo: false}) do |form| %>
+        <% if subject.errors.any? %>
+          <div class="alert alert-danger">
+            <h2><%= pluralize(subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
+
+            <ul>
+              <% subject.errors.full_messages.each do |error| %>
+                <li><%= error %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="mb-3 col-6">
+          <%= form.label :name, class: "form-label" %>
+          <%= form.text_field :name, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.submit "Save", class: "btn btn-primary" %>
+          <%= link_to "Cancel", subjects_path, class: "btn btn-danger" %>
+        </div>
+      <% end %>
+    

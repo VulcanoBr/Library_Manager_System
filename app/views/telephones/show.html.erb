@@ -1,0 +1,40 @@
+
+<div class="container">
+    <h5> University : <%= University.find(@telephones[0]['university_id']).name %> </h5> 
+    <div class="justify-content-center">
+          
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Phone</th>
+                    <th>Contact</th>
+                    <th>Email Contact</th>
+                    <th>Action</th>
+                    
+                </tr>
+            </thead>
+
+            <tbody>
+                <% @telephones.each do |phone| %>  
+                    
+                    <tr>
+                        <td><%= phone.phone %></td>
+                        <td><%= phone.contact %></td>
+                        <td><%= phone.email_contact %></td>
+                        <td>
+                            <%= link_to  @phone, class: "btn btn-danger", method: :delete, data: { "turbo-method": :delete, 
+                            turbo_confirm: "Tem certesa que deseja excluir este item ?"} do %>
+                            <i class="fas fa-trash" ></i> 
+                            <% end %>
+                        </td>
+                    </tr>
+                <% end %>  
+            </tbody>
+        </table> 
+
+        
+    </div>
+    <div>
+            <%= link_to "Back to University", universities_path, class: "btn btn-secondary" %> 
+        </div>
+</div>

@@ -1,0 +1,55 @@
+/* application.css */
+
+@font-face {
+  font-family: 'Marons-Regular';
+  src: url('/assets/fonts/Marons-Regular.ttf') format('ttf');
+}
+
+.h1 {
+  font-family: 'Marons-Regular';
+  background-color: blue;
+}
+
+.navbar {
+  background-color: #2f36f6;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.navbar h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.navbar-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  font-size: 16px;
+  color: white;
+}
+
+.navbar-list li {
+  margin-right: 20px;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.centered-h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 65px;
+}
+
+.custom-margin {
+  margin-left: 30px;
+}
+
+.card {
+  border: none;
+}

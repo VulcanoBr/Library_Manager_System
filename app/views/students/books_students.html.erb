@@ -1,0 +1,120 @@
+
+
+<div class="container">
+  <p id="notice" class="alert alert-info"><%= notice %></p>
+
+  <h1 class="mt-3">Books</h1>
+
+  <%= form_tag(search_book_students_path, method: "get", required: true) do %>
+    
+    <%= radio_button_tag(:search_by, "title", checked: true) %>Title
+    <%= radio_button_tag(:search_by, "authors") %>Author
+    <%= radio_button_tag(:search_by, "publisher") %>Publisher
+    <%= radio_button_tag(:search_by, "subject") %>Subject
+    <%= search_field_tag :search, params[:search], placeholder: "Search", required: true %>
+    <%= button_tag class: "btn btn-primary" do %>
+      <%= t('Search') %>
+    <% end %>
+  <% end %>
+
+  <h3 class="mt-4"><u> Books from libraries in your university </u></h3>
+  <strong>Note:</strong> You can only checkout/request/return/bookmark books from libraries of your university.<br><br>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Isbn</th>
+        <th>Title</th>
+        <th>Authors</th>
+        
+        <th>Subject</th>
+        
+        
+        <th>Special Collection</th>
+        <th>Library</th>
+        <th>Availability</th>
+        <th colspan="5"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <td><%= book.isbn %></td>
+          <td><%= book.title %></td>
+          <td><%= book.author.name %></td>
+          
+          <td><%= book.subject.name %></td>
+          
+         
+          <td><%= book.special_collection ? 'Yes' : 'No' %></td>
+          <td><%= book.library.name %></td>
+          <td><%= book.count > 0 ? "Available" : "Unavailable" %></td>
+          <td><%= link_to book, class: 'btn btn-primary' do %>
+                    <i class="fas fa-eye"></i>
+              <% end %>
+          </td>
+          <td>
+            <% if book.count < 1 || book.special_collection == true %>
+              <%= link_to 'Hold_Request', checkout_students_path(id: book), class: 'btn btn-secondary' %>
+            <% else %>
+              <%= link_to 'Checkout', checkout_students_path(id: book), class: 'btn btn-secondary' %>
+            <% end %>
+          </td>
+          <td><%= link_to 'Bookmark', bookmark_students_path(book_id: book.id), class: 'btn btn-warning' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    <%= link_to students_path, text: "Back", class: "btn btn-warning" do %>
+          <i class="fas fa-arrow-left" ></i> 
+          <span>Back Panel </span>
+    <% end %>
+  </div>
+
+  <br><br>
+
+  <h3><u>All Books</u></h3>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Isbn</th>
+        <th>Title</th>
+        <th>Authors</th>
+        <th>Language</th>
+        <th>Published</th>
+        <th>Edition</th>
+        <th>Subject</th>
+        <th>Summary</th>
+        
+        <th>Special collection</th>
+        <th>Library</th>
+        <th>Availability</th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @books_all.each do |book| %>
+        <tr>
+          <td><%= book.isbn %></td>
+          <td><%= book.title %></td>
+          <td><%= book.author.name %></td>
+          <td><%= book.language.name %></td>
+          <td><%= book.publisher.name %></td>
+          <td><%= book.edition %></td>
+          <td><%= book.subject.name %></td>
+          <td><%= book.summary %></td>
+          
+          <td><%= book.special_collection %></td>
+          <td><%= Library.all.where(id: book.library_id).first.name %></td>
+          <td><%= book.count > 0 ? "Available" : "Unavailable" %></td>
+          
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to 'Back', students_path, class: 'btn btn-secondary' %>
+</div>

@@ -1,0 +1,51 @@
+
+
+<div class="container">
+  <p class="text-success"><%= notice %></p>
+  <div class="d-flex justify-content-between">
+    <h1>Authors</h1>
+    <div>
+      <%= link_to "New Authors", new_author_path, class: "btn btn-success mt-3" %>
+    </div>
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Website</th>
+        <th>Nationality</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @authors.each do |author| %>
+        <tr>
+          <td><%= author.name %></td>
+          <td><%= author.email %></td>
+          <td><%= author.website %></td>
+          <td><%= author.nationality.name %></td>
+            <td>
+              <%= link_to author, class: 'btn btn-info' do %>
+                    <i class="fas fa-eye"></i>
+                <% end %>
+                <%= link_to edit_author_path(author), class: 'btn btn-warning' do %>
+                    <i class="fas fa-edit"></i>
+                <% end %>
+                <%= link_to  author, class: "btn btn-danger", method: :delete, data: { "turbo-method": :delete, 
+                        turbo_confirm: "Tem certesa que deseja excluir este item ?"} do %>
+                      <i class="fas fa-trash" ></i> 
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <div>
+      <%= link_to admins_path, text: "Back", class: "btn btn-warning" do %>
+        <i class="fas fa-arrow-left" ></i> 
+        <span>Back Panel</span>
+      <% end %>
+    </div>
+</div>

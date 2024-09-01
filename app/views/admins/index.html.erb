@@ -1,0 +1,101 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <%= image_tag 'logolibrary.webp', alt: 'Logo', width: "65", height: "55", class: "me-5 custom-margin" %>
+    <h1>Admin Panel</h1>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item ident ms-4">
+          <i class="fas fa-user me-1 fs-4"></i> <!-- Ícone de avatar 2x -->
+            <%= current_admin.name %>
+        </li>
+        <li class="nav-item ident ms-4">
+          <i class="fas fa-envelope me-1 fs-4"></i> <!-- Ícone de envelope 2x -->
+             <%= current_admin.email %>
+        </li>
+      </ul>
+      <div class="navbar-nav ms-auto">
+        <div class="linklogoutback">
+          <% if student_signed_in? %>
+            <%= button_to "Logout", destroy_student_session_path, method: :delete, class: 'btn btn-danger' %>
+          <% end %>
+          <% if librarian_signed_in? %>
+            <%= button_to "Logout", destroy_librarian_session_path, method: :delete, class: 'btn btn-danger' %>
+          <% end %>
+          <% if admin_signed_in? %>
+            <%= button_to 'Logout', destroy_admin_session_path, method: :delete, class: 'btn btn-danger' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <div class="row row-cols-1 row-cols-md-2">
+    <div class="col mb-4">
+      <section class="card">
+        <div class="card-body">
+          <h5 class="card-title">Admin</h5>
+          <%= link_to 'Edit Profile', edit_admin_path(current_admin), class: 'btn btn-primary mt-2' %>
+        </div>
+      </section>
+    </div>
+    <div class="col mb-4">
+      <section class="card">
+        <div class="card-body">
+          <h5 class="card-title">Librarian</h5>
+          <%= link_to 'Add Librarian', new_librarian_path, class: 'btn btn-primary mt-2' %>
+          <%= link_to 'View Librarians (Details/Edit/Delete/Approve)', show_librarians_admins_path, class: 'btn btn-secondary mt-2' %>
+        </div>
+      </section>
+    </div>
+    <div class="col mb-4">
+      <section class="card">
+        <div class="card-body">
+          <h5 class="card-title">Library</h5>
+          <%= link_to 'Add Library', new_library_path, class: 'btn btn-primary mt-2' %>
+          <%= link_to 'View Libraries (Details/Edit/Delete)', show_libraries_admins_path, class: 'btn btn-secondary mt-2' %>
+        </div>
+      </section>
+    </div>
+    <div class="col mb-4">
+      <section class="card">
+        <div class="card-body">
+          <h5 class="card-title">Student</h5>
+          <%= link_to 'Add Student', new_student_path, class: 'btn btn-primary mt-2' %>
+          <%= link_to 'View Students (Details/Edit)', show_students_admins_path, class: 'btn btn-secondary mt-2' %>
+          <%= link_to 'List of Students who have Checked Out Books', list_checkedoutBooksAndStudents_admins_path, class: 'btn btn-secondary mt-2' %>
+          <%= link_to 'View Students with Overdue Fine', getOverdueBooks_admins_path, class: 'btn btn-secondary mt-2' %>
+        </div>
+      </section>
+    </div>
+    <div class="col mb-4">
+      <section class="card">
+        <div class="card-body">
+          <h5 class="card-title">Book</h5>
+          <%= link_to 'Add Book', add_books_path, class: 'btn btn-primary mt-2' %>
+          <%= link_to 'View Books (Details/Borrowing History/Edit/Delete)', show_books_admins_path, class: 'btn btn-secondary mt-2' %>
+          <%= link_to 'View Checked Out Books', list_checkedoutBooks_admins_path, class: 'btn btn-secondary mt-2' %>
+          <%= link_to 'View Book Hold Request', viewHoldRequest_admins_path, class: 'btn btn-secondary mt-2' %>
+        </div>
+      </section>
+    </div>
+    <div class="col mb-4">
+      <section class="card">
+        <div class="card-body">
+          <h5 class="card-title">Table Support</h5>
+          <%= link_to 'University', universities_path, class: 'btn btn-primary mt-2' %>
+          <%= link_to 'Publisher', publishers_path, class: 'btn btn-secondary mt-2' %>
+          <%= link_to 'Language', languages_path, class: 'btn btn-secondary mt-2' %>
+          <%= link_to 'Subject', subjects_path, class: 'btn btn-secondary mt-2' %>
+          <%= link_to 'Education Level', education_levels_path, class: 'btn btn-secondary mt-2' %>
+          <%= link_to 'Author', authors_path, class: 'btn btn-secondary mt-2' %>
+          <%= link_to 'Nationality', nationalities_path, class: 'btn btn-secondary mt-2' %>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

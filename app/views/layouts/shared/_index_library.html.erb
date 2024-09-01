@@ -1,0 +1,59 @@
+<div class="container">
+  <p class="text-success"><%= notice %></p>
+  <div class="d-flex justify-content-between">
+    <h1>Library</h1>
+    <div>
+      <%= link_to "New Library", new_library_path, class: "btn btn-success mt-3" %>
+    </div>
+  </div>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>University</th>
+        <th>Location</th>
+        <th>Borrow limit</th>
+        <th>Overdue fines</th>
+        <th>Actions</th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @libraries.each do |library| %>
+        <tr>
+          <td><%= library.name %></td>
+          <td><%= library.email %></td>
+          <td><%= library.university.name %></td>
+          <td><%= library.location %></td>
+          <td><%= library.borrow_limit %></td>
+          <td><%= library.overdue_fines %></td>
+          <td>
+            <%= link_to library, class: 'btn btn-info' do %>
+                <i class="fas fa-eye"></i>
+            <% end %>
+          </td>
+          <td><%= link_to edit_library_path(library), class: 'btn btn-warning' do %>
+                  <i class="fas fa-edit"></i>
+              <% end %>
+          </td>
+          <td><%= link_to  library, class: "btn btn-danger", method: :delete, data: { "turbo-method": :delete, 
+                      turbo_confirm: "Tem certesa que deseja excluir este item ?"} do %>
+                  <i class="fas fa-trash" ></i> 
+              <% end %> 
+          <td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div>
+  <%= link_to admins_path, text: "Excluir", class: "btn btn-warning" do %>
+    <i class="fas fa-arrow-left" ></i> 
+    <span>Back Panel</span>
+  <% end %>
+</div>
+
+</div>

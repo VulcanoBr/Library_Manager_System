@@ -1,0 +1,11 @@
+<div class="container text-center">
+  <p style="color: green"><%= notice %></p>
+
+  <%= render @subject %>
+
+  <div>
+    <%= link_to "Edit this subject", edit_subject_path(@subject), class: "btn btn-primary" %> |
+    <%= link_to "Back to subjects", subjects_path, class: "btn btn-secondary" %>
+
+  </div>
+</div>

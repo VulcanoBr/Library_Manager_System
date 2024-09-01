@@ -1,0 +1,49 @@
+
+
+<div class="container ">
+  <p class="text-success"><%= notice %></p>
+  <div class="d-flex justify-content-between">
+    <h1>Publishers</h1>
+    <div>
+      <%= link_to "New Ppublisher", new_publisher_path, class: "btn btn-success mt-3" %>
+    </div>
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Website</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @publishers.each do |publisher| %>
+        <tr>
+          <td><%= publisher.name %></td>
+          <td><%= publisher.email %></td>
+          <td><%= publisher.website %></td>
+            <td>
+              <%= link_to publisher, class: 'btn btn-info' do %>
+                    <i class="fas fa-eye"></i>
+              <% end %>
+              <%= link_to edit_publisher_path(publisher), class: 'btn btn-warning' do %>
+                  <i class="fas fa-edit"></i>
+              <% end %>
+              <%= link_to  publisher, class: "btn btn-danger", method: :delete, data: { "turbo-method": :delete, 
+                      turbo_confirm: "Tem certesa que deseja excluir este item ?"} do %>
+                    <i class="fas fa-trash" ></i> 
+              <% end %> 
+            </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+      <%= link_to admins_path, text: "back", class: "btn btn-warning" do %>
+        <i class="fas fa-arrow-left" ></i> 
+        <span>Back Panel</span>
+      <% end %>
+  </div>
+</div>

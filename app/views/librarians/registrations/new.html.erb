@@ -1,0 +1,50 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="col-md-4">
+    <h2 class="mb-4">Librarian Sign up</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: {turbo: false}) do |form| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="mb-3">
+        <%= form.label :name, class: "form-label" %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :email, class: "form-label" %>
+        <%= form.text_field :email, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :library, class: "form-label" %>
+        <%= form.select(:library_id, Library.ordered_by_name.collect { |l| [l.name, l.id] }, 
+            { include_blank: "Select a Library" }, { class: "form-select" }) %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :password, class: "form-label" %>
+        <%= form.password_field :password, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.hidden_field :approved, value: 'No' %>
+      </div>
+
+      <p class="mb-4">
+        <strong>Note:</strong> Ask an Administrator to approve your account first.
+      </p>
+
+      <div class="d-grid mb-3">
+        <%= form.submit "Sign up", class: "btn btn-primary" %>
+      </div>
+
+      <div class="d-grid mb-3">
+        <%= link_to 'Cancel', root_path, class: 'btn btn-danger' %>
+      </div>
+
+
+    <% end %>
+
+    <%= render "librarians/shared/links" %>
+  </div>
+</div>

@@ -1,0 +1,139 @@
+<div class="container ">
+  <p id="notice" class="alert alert-info"><%= notice %></p>
+  <h2 class="text-center">Checked Out Books</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Isbn</th>
+        <th>Title</th>
+        <th>Authors</th>
+        <th>Language</th>
+        <th>Published</th>
+        <th>Edition</th>
+        <th>Cover</th>
+        <th>Subject</th>
+        <th>Summary</th>
+        
+        <th>Special Collection</th>
+        <th>Library</th>
+        <th colspan="6"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @checkout.each do |book| %>
+        <tr>
+          <td><%= book.isbn %></td>
+          <td><%= book.title %></td>
+          <td><%= book.author.name %></td>
+          <td><%= book.language.name %></td>
+          <td><%= book.publisher.name %></td>
+          <td><%= book.edition %></td>
+          <td>
+            <%= book.cover? ? image_tag(book.cover.url, size: "100x75" ) : image_tag('semfoto.png', size: "60x35") %>
+          </td>
+          <td><%= book.subject.name %></td>
+          <td><%= book.summary %></td>
+          
+          <td>
+            <%= book.special_collection ? 'Yes' : 'No' %>
+          </td>
+          <td><%= Library.find(book.library_id).name %></td>
+          <td><%= link_to 'Return_Book', returnBook_students_path(id: book), class: 'btn btn-success' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h2 class="text-center mt-4">Bookmarked Books</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Isbn</th>
+        <th>Title</th>
+        <th>Authors</th>
+        <th>Language</th>
+        <th>Published</th>
+        <th>Edition</th>
+        <th>Cover</th>
+        <th>Subject</th>
+        <th>Summary</th>
+        
+        <th>Special Collection</th>
+        <th>Library</th>
+        <th colspan="6"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @bookmark.each do |book| %>
+        <tr>
+          <td><%= book.isbn %></td>
+          <td><%= book.title %></td>
+          <td><%= book.author.name %></td>
+          <td><%= book.language.name %></td>
+          <td><%= book.publisher.name %></td>
+          <td><%= book.edition %></td>
+          <td>
+            <%= book.cover? ? image_tag(book.cover.url, size: "60x35" ) : image_tag('semfoto.png', size: "60x35") %>
+          </td>
+          <td><%= book.subject.name %></td>
+          <td><%= book.summary %></td>
+          
+          <td>
+            <%= book.special_collection ? 'Yes' : 'No' %>
+          </td>
+          <td><%= Library.find(book.library_id).name %></td>
+          <td><%= link_to 'Unbookmark', unbookmark_students_path(book_id: book.id), class: "btn btn-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h2 class="text-center mt-4">Requested Books</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Isbn</th>
+        <th>Title</th>
+        <th>Authors</th>
+        <th>Language</th>
+        <th>Published</th>
+        <th>Edition</th>
+        <th>Cover</th>
+        <th>Subject</th>
+        <th>Summary</th>
+        
+        <th>Special Collection</th>
+        <th>Library</th>
+        <th colspan="6"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @request.each do |book| %>
+        <tr>
+          <td><%= book.isbn %></td>
+          <td><%= book.title %></td>
+          <td><%= book.author.name %></td>
+          <td><%= book.language.name %></td>
+          <td><%= book.publisher.name %></td>
+          <td><%= book.edition %></td>
+          <td>
+            <%= book.cover? ? image_tag(book.cover.url, size: "60x35" ) : image_tag('semfoto.png', size: "60x35") %>
+          </td>
+          <td><%= book.subject.name %></td>
+          <td><%= book.summary %></td>
+          <td>
+            <%= book.special_collection ? 'Yes' : 'No' %>
+          </td>
+          <td><%= Library.find(book.library_id).name %></td>
+          <td><%= link_to "Repeal_Request", repealRequest_students_path(book_id: book.id), class: "btn btn-info" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    <%= link_to students_path, text: "Back", class: "btn btn-warning" do %>
+          <i class="fas fa-arrow-left" ></i> 
+          <span>Back Panel </span>
+    <% end %>
+  </div>
+</div>

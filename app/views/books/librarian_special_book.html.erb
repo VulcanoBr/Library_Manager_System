@@ -1,0 +1,39 @@
+<div class="container">
+  <h1 class="mt-3">Special Book Request</h1>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Title</th>
+        <th>Available Count</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% if !@special_books.nil? %>
+        <% @special_books.each do |special_book| %>
+          <tr>
+            <td><%= Student.find(special_book.student_id).name %></td>
+            <% book = Book.find(special_book.book_id)  %>
+            <td><%= book.title %></td>
+            <td>
+              <span class="badge <%= book.count > 0 ? 'bg-success' : 'bg-danger' %>">
+                <%= book.count %>
+              </span>
+            </td>
+            <td><%= link_to 'Approve', approve_special_book_path(id: special_book), class: 'btn btn-primary' %></td>
+            <td><%= link_to 'Deny', reject_special_book_path(id: special_book), class: 'btn btn-danger' %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    <%= link_to librarians_path, text: "Back", class: "btn btn-warning" do %>
+        <i class="fas fa-arrow-left" ></i> 
+        <span>Back Panel</span>
+    <% end %>
+  </div>
+</div>

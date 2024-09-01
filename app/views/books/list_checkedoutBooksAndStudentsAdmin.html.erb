@@ -1,0 +1,58 @@
+
+<div class="container">
+  <h1 class="mt-3 text-center">List of Students who have Checked out Books</h1>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        
+        <th>University</th>
+        <th>Isbn</th>
+        <th>Title</th>
+       
+        <th>Issue Date</th>
+        <th>Return Date</th>
+       
+        
+       
+        
+        
+        <th>Special Collection</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @results.each do |result| %>
+     
+        <tr>
+          <td><%= result.name %></td>
+          <td><%= result.email %></td>
+  
+          <td><%= University.find(result[:university_id]).name %></td>
+          <td><%= result.isbn %></td>
+          <td><%= result.title %></td>
+          
+          <td><%= result.issue_date.strftime("%d/%m/%Y") %></td>
+          <td><%= result.return_date.try(:strftime, "%d/%m/%Y") %></td>
+          
+          
+         
+          
+          
+          <td> <%= result.special_collection ? "Yes" : "No" %> </td>
+          <td><%= link_to 'Show', student_path(result), class: 'btn btn-primary' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <div>
+    <%= link_to librarians_path, text: "Back", class: "btn btn-warning" do %>
+        <i class="fas fa-arrow-left" ></i> 
+        <span>Back Panel</span>
+    <% end %>
+  </div>
+</div>

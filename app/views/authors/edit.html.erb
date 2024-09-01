@@ -1,0 +1,20 @@
+
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h1 class="card-title">Edit Author</h1>
+        </div>
+        <div class="card-body">
+          <%= render "form", author: @author %>
+        </div>
+        <div class="mt-4">
+          <%= link_to "Show this author", @author, class: "btn btn-primary" %> |
+          <%= link_to "Back to authors", authors_path, class: "btn btn-secondary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
